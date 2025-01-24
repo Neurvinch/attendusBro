@@ -1,10 +1,10 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
 
-const studentModelSchema = new Schema({
+const studentModelSchema = new mongoose.Schema({
     rollNo : {type : Number , required : true, unique : true  },
     dob : {type : Date , required : true  },
     name : {type : String , required : true  },
 
 })
 
-export default model('studentModel', studentModelSchema);
+module.exports = mongoose.model('Student', studentModelSchema);

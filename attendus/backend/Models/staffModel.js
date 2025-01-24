@@ -6,4 +6,4 @@ const staffSchema = new mongoose.Schema({
     password : {type: String, required: true}, 
 });
 
-module.exports = mongoose.model('staffModel'.staffSchema)
+module.exports = mongoose.model('staffModel',staffSchema)

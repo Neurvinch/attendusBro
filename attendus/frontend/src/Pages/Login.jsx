@@ -7,7 +7,7 @@ const Login = () => {
         e.prevantDefault();
 
         try {
-            const response = await axios.post("" ,{rollNo,dob})
+            const response = await axios.post("http://localhost:5000/apiv1/Login" ,{rollNo,dob})
             
             localStorage.setItem("token",response.data.token);
             alert("You Can Go Ahead");
@@ -39,7 +39,7 @@ const Login = () => {
         
         
         </form>
-        {error && <p>{error}</p>}
+       
     </div>
   )
 }

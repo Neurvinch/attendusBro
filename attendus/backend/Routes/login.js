@@ -1,10 +1,12 @@
 const express = require('express');
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt');
 
-const Student = require('../Models/studentModel').default;
-const Staff =- require("../Models/staffModel")
-const Hod = require("../Models/hodModel")
+const  studentModel = require("../Models/studentModel");
+const Staff = require("../Models/staffModel");
+const Hod = require("../Models/hodModel");
+
+
 const router = express.Router();
 
 
@@ -12,7 +14,7 @@ router.post ("/student/login" ,async (res,req) =>{
     try {
 
         const {rollNo , dob } = req.body;
-        const student = await Student.findOne({rollNo});
+        const student = await studentModel.findOne({rollNo});
         if(!student){
         return res.statusCode(400).json({message : "student not found"});
          }
@@ -72,4 +74,4 @@ router.post ("/staff/login", async(res,req) =>{
        }    
 });
 
-module.exports = router;
+module.exports = router
