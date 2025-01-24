@@ -9,20 +9,21 @@ const Hod = require("../Models/hodModel");
 
 const router = express.Router();
 
+const jwt_Secret_key = "mysecretkey";
 
-router.post ("/student/login" ,async (res,req) =>{
+router.post("/student/login" ,async (req,res) =>{
     try {
 
-        const {rollNo , dob } = req.body;
+        const {rollNo , password } = req.body;
         const student = await studentModel.findOne({rollNo});
         if(!student){
-        return res.statusCode(400).json({message : "student not found"});
+        return res.status(400).json({message : "student not found"});
          }
 
-         if(new Date(student.dob).getTime() !== new Date(dob).getTime()) {
+         if( !(await bcrypt.compare(password,studentModel.password))){
             return res.statusCode(400).json({message : "student not found"});
-         }
-      
+        }
+
          const token = jwt.sign({id : student._id},jwt_Secret_key,{expiresIn : '1h'});
          res.json({token});
     } catch (error) {
