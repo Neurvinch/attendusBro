@@ -1,19 +1,35 @@
 const express = require('express');
- const Login = require('./Routes/login');
+const Loginstd = require("./Routes/login")
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const helmet = require('helmet');
 
-mongoose.connect('mongodb+srv://neuervinch:95144@cluster0.jignh9i.mongodb.net/', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    tlsAllowInvalidCertificates: true, // If necessary for debugging
-} 
-   
-);
+
+mongoose.connect('mongodb+srv://naveen:95144@cluster0.ij3t1.mongodb.net/').then ( () =>{
+    console.log('database connected');
+}) .catch((error) =>{
+    console.log(error)
+} )
 
 const app = express();
 app.use(express.json());
+app.use(helmet());
+app.use(cors());
+app.use(cookieParser());
+app.use(express.urlencoded({extended : true}));
 
-app.use('/apiv1', Login );
+app.use("/api/auth/student",Loginstd)
+
+
+
+ 
+   
+
+
+
+
+
 
 app.get('/', (req, res) => {
     res.send('Welcome to the API');
