@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const {signupSchema , signinSchema, SigninSchema } = require("../MidlleWare/Validators");
 const { doHash,doHashValidation , hmacProcess  } = require('../Utils/Hashing')
 
-const secret_key = import.meta.env.Secret_key 
+const secret_key = process.env.Secret_key 
 const studentModel = require('../Models/studentModel');
 
 exports.signup = async (req, res ) =>{
