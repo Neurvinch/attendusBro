@@ -75,4 +75,19 @@ router.delete ('/', identifer(['staff' ,'hod'] ) , async (req,res) =>{
     }
 })
 
+router.get("/" , identifer(['hod'] ) , async (req , res) => {
+    try {
+        const users = await UserModel.find({
+            roles : req.query.roles ,
+            department : req.user.department
+
+        }).select('name email rollNo roles')
+
+        res.json({sucess : true , data : users})
+    } catch (error) {
+        res.status(500).json({sucess : false , message : error.message})
+        
+    }
+})
+
 module.exports = router
