@@ -25,6 +25,11 @@ const UserSchema = new mongoose.Schema({
 
    deaprtment :  {type : String},
 
+   class : {type : String},
+
+   // timetable for the userid linked to the class he study
+   timetable :[ {type : mongoose.Schema.Types.ObjectId , ref : "TimeTableModel"}],
+
    
 
    verified: {
