@@ -1,14 +1,14 @@
-const {hash,compare} = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { createHmac } = require("crypto");
 
 
 exports.doHash = ( value, saltValue) =>{
-    const result = hash ( value ,saltValue)
+    const result = bcrypt.hash ( value ,saltValue)
       return result
 }
 
 exports.doHashValidation = ( value, hashedValue) =>{
-  const result = compare ( value ,hashedValue)
+  const result = bcrypt.compare ( value ,hashedValue)
     return result
 };
 

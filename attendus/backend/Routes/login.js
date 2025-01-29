@@ -4,6 +4,7 @@ const router = express.Router();
 
 
 router.post ( "/signup" , Authcontrol.signup);
+router.post("/signin" , Authcontrol.signup );
 
 
 

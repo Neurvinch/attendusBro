@@ -8,5 +8,5 @@ exports.signupSchema = Joi.object({
 
 exports.SigninSchema = Joi.object({
     rollNo : Joi.number().required(),
-    passWord : Joi.string().required().pattern( new  RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})')),
+    password : Joi.string().required().pattern( new  RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})')),
 })
