@@ -1,5 +1,5 @@
 const express = require('express');
-const Loginstd = require("./Routes/login")
+const LoginAll = require("./Routes/login")
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -19,7 +19,7 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.urlencoded({extended : true}));
 
-app.use("/api/auth/student",Loginstd)
+app.use("/api/auth/student",LoginAll)
 
 
 

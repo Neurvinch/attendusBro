@@ -1,19 +1,19 @@
 const jwt = require('jsonwebtoken');
-const {signupSchema , signinSchema, SigninSchema } = require("../MidlleWare/Validators");
+const {signupSchema , signinSchema} = require("../MidlleWare/Validators");
 const { doHash,doHashValidation , hmacProcess  } = require('../Utils/Hashing')
 
 const secret_key = process.env.Secret_key 
-const studentModel = require('../Models/studentModel');
+const UserModel = require('../Models/UserModel');
 
 exports.signup = async (req, res ) =>{
-      const{ rollNo , password} = req.body;
+      const{ rollNo , password,email, roles , department} = req.body;
       try {
-           const { error, value} = signupSchema.validate({rollNo,password}); 
+           const { error, value} = signupSchema.validate({rollNo,password ,email, roles , department}); 
            if(error){
             return res.status(400).json({sucess : false , message: error.details[0].message})
            }
            
-           const existingStudent = await studentModel.findOne({rollNo});
+           const existingStudent = await UserModel.findOne({rollNo});
 
            if(existingStudent ){
 
@@ -22,12 +22,16 @@ exports.signup = async (req, res ) =>{
 
            const hashedpassword  = await doHash(password, 12);
 
-           const newStudent = new studentModel({
+           const newStudent = new UserModel({
             rollNo,
-            password : hashedpassword
+            password : hashedpassword,
+            email,
+            roles,
+            department
 
            });
 
+            
            const savedStudent = await newStudent.save();
 
            savedStudent.password = undefined;
@@ -41,17 +45,17 @@ exports.signup = async (req, res ) =>{
     
 }
 
-exports.signup = async(req,res) =>{
-      const {rollNo , password} = req.body;
+exports.signin = async(req,res) =>{
+      const {rollNo , password,email, roles , department} = req.body;
 
       try { 
-            const {error, value} = SigninSchema.validate({rollNo,password});
+            const {error, value} = signinSchema.validate({rollNo,password,email,roles,department});
             
             if(error){
                   return res.status(400).json({sucess : false , message: error.details[0].message})
             }
 
-            const existingStudent = await studentModel.findOne({rollNo}).select('+password')
+            const existingStudent = await UserModel.findOne({rollNo,roles}).select('+password')
 
             if(!existingStudent){
                   return res.status(401).json({sucess : false , message: 'Student does not exist!'})
@@ -65,7 +69,7 @@ exports.signup = async(req,res) =>{
 
             const token = jwt.sign({studentId : existingStudent._id ,
                   rollNo : existingStudent.rollNo,
-                  verified : existingStudent.verified } ,secret_key  , {
+                  verified : existingStudent.verified , role : existingStudent.roles } ,secret_key  , {
                         expiresIn : '8h',
                   });
 // seeting token in the cookie

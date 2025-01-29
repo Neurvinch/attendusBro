@@ -1,11 +1,12 @@
 const express = require('express');
-const Authcontrol = require("../Controllers/authController")
+const Authcontrol = require("../Controllers/authController");
+const { identifer } = require('../MidlleWare/identification');
 const router = express.Router();
 
 
 router.post ( "/signup" , Authcontrol.signup);
-router.post("/signin" , Authcontrol.signup );
-router.post("/signout" ,Authcontrol.signOut)
+router.post("/signin" , Authcontrol.signin );
+router.post("/signout" ,identifer,Authcontrol.signOut)
 
 
 module.exports = router;

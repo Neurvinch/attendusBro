@@ -1,6 +1,6 @@
  const jwt = require("jsonwebtoken");
 
- exports.identifer = async (req, res, next) =>{
+ exports.identifer = (roles = []) => async (req, res, next) =>{
 
     let token ;
 
@@ -19,14 +19,16 @@
     try {  
         const studentToken = token.split('')[1];
         const decode = jwt.verify(studentToken , process.env.Secret_key);
-       if( decode){ 
+       if( roles.length && !roles.includes(decode.roles)){
+        res.status(403).json({sucess : false , message: "Unauthorized" })}
+
         req.user = decode;
         next()
-    } else{
-        throw new Error("Invalid/expired Token")
-    }
+    } 
+
+    
         
-    } catch (error) {
+     catch (error) {
          console.log(error)
     }
  }
