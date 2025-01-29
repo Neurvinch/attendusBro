@@ -1,5 +1,6 @@
 const express = require('express');
 const LoginAll = require("./Routes/login")
+const AttendanceAll = require("./Routes/Attendance")
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -20,7 +21,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended : true}));
 
 app.use("/api/auth/student",LoginAll)
-
+app.use("/api/attendance",AttendanceAll )
 
 
  
