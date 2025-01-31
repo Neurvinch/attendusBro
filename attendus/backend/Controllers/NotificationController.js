@@ -17,4 +17,4 @@ router.get('/', identifier(['student']) ,   async (req , res) =>{
         res.json({sucess : false , message : error.message})
     }
 
-})
+});
