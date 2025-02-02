@@ -10,7 +10,7 @@ const handleSubmitChange = async (e) =>{
 
     e.preventDefault();
     try { 
-        const res = await axios.post('',formData);
+        const res = await axios.post('http://localhost:5000/api/auth/student/login',formData);
         localStorage.setItem('token', res.data.token);
         navigate('/dashboard');
         
