@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./Pages/Login"
+import Signup from "./Pages/Signup"
+
 import './App.css'
 
 
@@ -15,10 +17,10 @@ function App() {
     <Router>
     <Navbar/>
     <Routes>
-      <Route path ="/" element={<Home/>} />
-      <Route  path = "/login" elemnt = {<Login/>} />
+      {/* <Route path ="/" element={<Home/>} />*/}
+      <Route  path = "/login" element = {<Login/>} /> 
       <Route path = "/signup" element = {<Signup/>} />
-      <Route
+      {/* <Route
          path = "/dashboard"
          element = { token ?<Dashboard /> : <Navigate to ='/login'/>  
 
@@ -39,9 +41,9 @@ function App() {
          element = {
           user.roles === 'hod' || 'staff' ? <AdminPanel/> : <Navigate to = "/dashboard" />
          }
-      />
+      /> */}
     </Routes>
-  <Footer/>
+  {/* <Footer/> */}
   </Router>
     
   )
