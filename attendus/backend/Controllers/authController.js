@@ -6,9 +6,9 @@ const secret_key = process.env.Secret_key
 const UserModel = require('../Models/UserModel');
 
 exports.signup = async (req, res ) =>{
-      const{ rollNo , password,email, roles , department} = req.body;
+      const{ rollNo , password,email, roles , } = req.body;
       try {
-           const { error, value} = signupSchema.validate({rollNo,password ,email, roles , department}); 
+           const { error, value} = signupSchema.validate({rollNo,password ,email, roles , }); 
            if(error){
             return res.status(400).json({sucess : false , message: error.details[0].message})
            }
@@ -27,7 +27,7 @@ exports.signup = async (req, res ) =>{
             password : hashedpassword,
             email,
             roles,
-            department
+            
 
            });
 
@@ -46,10 +46,10 @@ exports.signup = async (req, res ) =>{
 }
 
 exports.signin = async(req,res) =>{
-      const {rollNo , password,email, roles , department} = req.body;
+      const {rollNo , password,email, roles , } = req.body;
 
       try { 
-            const {error, value} = signinSchema.validate({rollNo,password,email,roles,department});
+            const {error, value} = signinSchema.validate({rollNo,password,email,roles,});
             
             if(error){
                   return res.status(400).json({sucess : false , message: error.details[0].message})

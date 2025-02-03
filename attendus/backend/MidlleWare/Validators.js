@@ -19,5 +19,5 @@ exports.signinSchema = Joi.object({
         tlds:{allow : ['com' , 'net' , 'in' , 'org']},
     }),
     roles : Joi.string().valid('student' , 'staff' , 'hod').required(),
-    department : Joi.string().required(),
+    department : Joi.string()
 })
