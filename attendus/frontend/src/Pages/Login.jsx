@@ -21,25 +21,56 @@ const handleSubmitChange = async (e) =>{
 
   return (
     <div>
-    <form>
-        <input
-         type="email"
-         value={formData.email}
-         placeholder='Email'
-         onChange={(e) => setFormData({...formData, email: e.target.value})}
-        />
-        <input
-         type="password"
-         value={formData.password}
-         placeholder='Password'
-         onChange={(e) => setFormData({...formData, password: e.target.value})}
-        />
-        <button
-         type="submit"
-        >
-            Login
-        </button>
-    </form>
+    <form onSubmit={handleSubmitChange}>
+            <input
+             type = 'email'
+             value = {formData.email}
+             placeholder='Email'
+             onChange={ (e) =>{
+              setFormData({...formData , email : e.target.value})
+              required
+             }}
+            
+            />
+
+             <input
+               type = 'number'
+               value = {formData.rollNo}
+               placeholder = "Roll No"
+               onChange = { (e) =>{
+                setFormData({...formData , rollNo : e.target.value})
+               }}
+               required
+             
+             />
+
+             <input
+              type = 'password'
+              value = {formData.password}
+              placeholder = 'Password'
+              onChange={ (e) =>{
+                setFormData({...formData , password : e.target.value})
+              }}
+              required
+
+             />
+
+           <select 
+              value = {formData.roles}
+              onchange = { (e) =>{
+                setFormData({...formData, roles : e.target.value})
+              }}
+              required
+           >
+              <option  value = 'student'  >student   </option>
+              <option  value = 'staff'  >staff</option>
+              <option  value = 'hod'   >hod</option>
+           </select>
+
+                <button type='submit'  
+                  
+                > Login</button>
+                  </form>
          <p>
             Dont have an account? <a href="/signup">Signup</a>
          </p>
