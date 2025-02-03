@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
-import axios from 'axios'
+import {useAuth} from '../context/AuthContext'
 
 const Login = () => {
     const [formData , setFormData] = useState({email : '', password : '',
        rollNo : '',
       roles : 'student',
     });
+
+    const {login} = useAuth();
     const navigate =  useNavigate();
 
 const handleSubmitChange = async (e) =>{
 
     e.preventDefault();
     try { 
-        const res = await axios.post('http://localhost:5000/api/auth/student/signin',formData);
-        localStorage.setItem('token', res.data.token);
-        // navigate('/dashboard');
-        console.log(res.data.token);
+          await login(formData);
+          navigate('/dashboard');
         
     } catch (error) {
         alert('Login Failed')
@@ -32,9 +32,9 @@ const handleSubmitChange = async (e) =>{
              placeholder='Email'
              onChange={ (e) =>{
               setFormData({...formData , email : e.target.value})
-              required
+              
              }}
-            
+            required
             />
 
              <input

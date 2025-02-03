@@ -25,7 +25,7 @@ const Signup = () => {
         }
         
         try {
-          const res = await axios.post('http://localhost:5000/api/auth/student/signup',formData); 
+          const res = await axios.post('http://localhost:5000/api/auth/signup',formData); 
 
           if(res.data.success){
             setSuccess('User created successfully');

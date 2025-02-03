@@ -19,7 +19,7 @@ const api = axios.create({
 
  export default {
 
-    login : (credentials) => api.post('/api/auth/signin' , credentials),
+    login : (formData) => api.post('/api/auth/signin' , formData),
     signup : ( userData) => api.post('/api/auth/signup' , userData),
 
     getProfile : () => api.get('/api/users/me'),

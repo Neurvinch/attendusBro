@@ -20,7 +20,7 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.urlencoded({extended : true}));
 
-app.use("/api/auth/student",LoginAll)
+app.use("/api/auth",LoginAll)
 app.use("/api/attendance",AttendanceAll )
 
 

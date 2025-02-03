@@ -1,52 +1,49 @@
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./Pages/Login"
 import Signup from "./Pages/Signup"
+import {AuthProvider , useAuth} from "./context/AuthContext"
 
 import './App.css'
+import Dashboard from './Pages/Dashboard';
 
 
 function App() {
-  const token = localStorage.getItem('token');
-  const user = token ? JSON.parse(atob(token.split('.')[1] )) : null;
 
 
   return (
+    <AuthProvider>
     <Router>
-    <Navbar/>
-    <Routes>
-      <Route path ="/" element={<Home/>} />
-      <Route  path = "/login" element = {<Login/>} /> 
-      <Route path = "/signup" element = {<Signup/>} />
-      {/* <Route
-         path = "/dashboard"
-         element = { token ?<Dashboard /> : <Navigate to ='/login'/>  
+      <Navbar/>
+      <Routes>
+         <Route path ="/" element={<Home/>} />
+         <Route path ="/login" element={<Login/>} />
+         <Route path ="/signup" element={<Signup/>} />
+          <Route   path = '/dashboard' element= {  <Dashboard/> } />
 
-         }
-      />
+      </Routes>
+      
+    </Router>
+ </AuthProvider>
 
-      <Route path = '/announcements'  element = {
-        token ? <Announcements /> : <Navigate to ='/login'/>
-      } />
-
-      <Route
-          path = "/profile" element = {
-            token ? <Profile /> : <Navigate to= "/login"  />
-          }
-      />
-      <Route
-         path = '/admin'
-         element = {
-          user.roles === 'hod' || 'staff' ? <AdminPanel/> : <Navigate to = "/dashboard" />
-         }
-      /> */}
-    </Routes>
-  {/* <Footer/> */}
-  </Router>
     
   )
 }
+
+const protecetdRoute =( {children}) =>{
+   const {user} = useAuth()
+   return user ? children : <Navigate to = "/login"   />
+
+};
+
+const Adminroutes =( {children}) =>{
+  const {user} = useAuth();
+
+  return user?.roles === 'hod' || 'staff' ? children : <Navigate  to ='/dashboard' />
+}
+
+
 
 export default App
