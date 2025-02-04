@@ -4,7 +4,10 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./Pages/Login"
 import Signup from "./Pages/Signup"
+import Profile from "./Pages/Profile"
+import AttendanceMarking from "./components/AttendnaceMarking"
 import {AuthProvider , useAuth} from "./context/AuthContext"
+import {protecetdRoute , Adminroutes } from "./utils/AdminRoutes"
 
 import './App.css'
 import Dashboard from './Pages/Dashboard';
@@ -21,7 +24,21 @@ function App() {
          <Route path ="/" element={<Home/>} />
          <Route path ="/login" element={<Login/>} />
          <Route path ="/signup" element={<Signup/>} />
-          <Route   path = '/dashboard' element= {  <Dashboard/> } />
+
+          <Route  element={<protecetdRoute/>} >
+            <Route  path = '/dashboard' element = { <Dashboard/>}  />
+            <Route  path = '/profile' element = {<Profile/>}  />
+          
+          </Route>
+
+
+          <Route element = {<Adminroutes/>} > 
+             <Route  path = '/markAttendance' element= {<AttendanceMarking/>}  />
+          </Route>
+
+          <Route  path ='*'  element = {
+            <Navigate to= "/dashboard" />
+          }  />
 
       </Routes>
       
@@ -32,17 +49,6 @@ function App() {
   )
 }
 
-const protecetdRoute =( {children}) =>{
-   const {user} = useAuth()
-   return user ? children : <Navigate to = "/login"   />
-
-};
-
-const Adminroutes =( {children}) =>{
-  const {user} = useAuth();
-
-  return user?.roles === 'hod' || 'staff' ? children : <Navigate  to ='/dashboard' />
-}
 
 
 
