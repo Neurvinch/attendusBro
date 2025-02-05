@@ -39,8 +39,22 @@ const LeaveRequestform = () => {
              <option value='leave' >Leave</option>
              <option value= 'od'  >OD</option>
           </select>
+<label>Reason</label>
+   <textarea
+     value={reason}
+     onChange={(e) => setReason(e.target.value)}
+     rows= '4'
+     required
+     
+   />
+
+   <button
+     type='submit'
+   >Submit</button>
+
     </form>
         
+        {message && <p>{message}</p>}
     </>
   )
 }
