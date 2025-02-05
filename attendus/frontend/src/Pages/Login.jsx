@@ -8,14 +8,14 @@ const Login = () => {
       roles : 'student',
     });
 
-    const {login} = useAuth();
+    const {Login} = useAuth();
     const navigate =  useNavigate();
 
 const handleSubmitChange = async (e) =>{
 
     e.preventDefault();
     try { 
-          await login(formData);
+          await Login(formData);
           navigate('/dashboard');
         
     } catch (error) {

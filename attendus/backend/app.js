@@ -32,9 +32,9 @@ app.use("/api/attendance",AttendanceAll )
 
 
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the API');
-});
+// app.get('/', (req, res) => {
+//     res.send('Welcome to the API');
+// });
 
 app.listen( 5000 , () =>{
     console.log('listening on port 5000');
