@@ -14,7 +14,7 @@ const Dashboard = () => {
       const fetchAttendance  = async () =>{
         if(user?.roles === 'student'){
           try { 
-            const res = await api.get(`/attendance/${user.id}`);
+            const res = await api.get('/api/attendance/getAttendance');
             setAttendance(res.data)
             
           } catch (error) {
@@ -64,7 +64,7 @@ const Dashboard = () => {
                   Upload Marks
                  </a>
 
-                 <Timetable   schedule = {timeTable}  />
+                 <TimeTableView   schedule = {timeTable}  />
               
               </>
             )}
