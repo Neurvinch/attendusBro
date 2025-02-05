@@ -3,6 +3,7 @@ import AttendanceSummary from '../components/AttendanceSummary';
 import TimeTableView from '../components/TimeTableView';
 import { useAuth } from '../context/AuthContext';
 import api from '../api';
+import BadgeDisplay from '../components/BadgeDisplay';
 
 const Dashboard = () => {
     const {user} = useAuth();
@@ -67,6 +68,7 @@ const Dashboard = () => {
               
               </>
             )}
+            <BadgeDisplay  attendancePercentage={percentage}   />
             
              
       

@@ -1,25 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import {toast} from 'react-toastify';
+const AttendanceSummary = ({data}) => {
+    const total = data.lenght;
+    const present  = data.filter((s)=>s.status === 'present').lenght
+    const percentage = ((present/total) * 100 ).toFixed(1);
 
-const AttendanceSummary = () => {
-    const[attendance ,setAttendance] = useState({
-        present : 0,
-        total : 0,
-    });
-    const [loading , setLoading] = useState(true);
-
-    useEffect( () =>{
-        const getchAttendance = async() =>{
-            try {
-                
-            } catch (error) {
-                
-            }
+      useEffect( () =>{
+         
+        if(percentage < 75){
+          toast.warning(`Your attendance is ${percentage}% (below the required one) `)
         }
-    } , [])
+
+      },[percentage])
+
 
 
   return (
-    <div>AttendanceSummary</div>
+    <> 
+       <h3>AttendanceSummary</h3>
+       <p> Total Days : {total}</p>
+       <p>Present Days : {present}</p>
+       <p>Attendance Percentage : {percentage}%</p>
+
+  
+  </> 
   )
 }
 

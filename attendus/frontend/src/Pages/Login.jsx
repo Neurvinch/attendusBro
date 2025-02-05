@@ -61,7 +61,7 @@ const handleSubmitChange = async (e) =>{
 
            <select 
               value = {formData.roles}
-              onchange = { (e) =>{
+              onChange = { (e) =>{
                 setFormData({...formData, roles : e.target.value})
               }}
               required

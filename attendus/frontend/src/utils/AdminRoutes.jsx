@@ -1,7 +1,7 @@
 
 import { Navigate } from "react-router-dom";
 import {useAuth} from "../context/AuthContext"
-const protecetdRoute =( {children}) =>{
+export const ProtecetdRoute =( {children}) =>{
     const {user,loading} = useAuth()
 
     if(loading) {
@@ -11,7 +11,7 @@ const protecetdRoute =( {children}) =>{
  
  };
  
- const Adminroutes =( {children}) =>{
+export  const Adminroutes =( {children}) =>{
    const {user} = useAuth();
  
     const isAdmin  = user?.roles === 'hod' ||
@@ -20,4 +20,4 @@ const protecetdRoute =( {children}) =>{
     return isAdmin ? children : <Navigate to ='/dashboard' /> ;
  }
 
- export default { protecetdRoute , Adminroutes};
+ 

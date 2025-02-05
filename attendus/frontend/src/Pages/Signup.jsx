@@ -83,7 +83,7 @@ const Signup = () => {
 
            <select 
               value = {formData.roles}
-              onchange = { (e) =>{
+              onChange = { (e) =>{
                 setFormData({...formData, roles : e.target.value})
               }}
               required
