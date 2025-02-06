@@ -4,18 +4,22 @@ import TimeTableView from '../components/TimeTableView';
 import { useAuth } from '../context/AuthContext';
 import api from '../api';
 import BadgeDisplay from '../components/BadgeDisplay';
+import {Link} from 'react-router-dom'
 
 const Dashboard = () => {
     const {user} = useAuth();
     const [attendance , setAttendance] = useState([]);
     const [timeTable ,setTimeTable] = useState( {});
-
+ const [percentage , setPercentage] = useState(0)
+     
     useEffect(() =>{
       const fetchAttendance  = async () =>{
         if(user?.roles === 'student'){
           try { 
-            const res = await api.get('/api/attendance/getAttendance');
-            setAttendance(res.data)
+            const res = await api.get( ` /api/attendance/${user._id}` );
+            setAttendance(res.data.data)
+
+          
             
           } catch (error) {
              console.log(' error fetching attendance' , error);
