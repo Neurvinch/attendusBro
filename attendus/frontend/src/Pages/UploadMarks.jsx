@@ -48,9 +48,9 @@ const UploadMarks = () => {
           }}
           />
 
-          <buton
+          <button
              type = "submit"
-            > Upload</buton>
+            > Upload</button>
       </form>
       {message && <p> {message}</p> }
     </>

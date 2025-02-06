@@ -11,7 +11,7 @@ const AttendnaceMarking = () => {
      const fetchStudents = async() =>{
       try {  
         const res = await api.get(
-            '/api/attendance/getAttendance'
+            `/students?department = ${user.department}`
         )
         setStudens(res.data.map( (students) =>({
           ...students,
@@ -30,7 +30,7 @@ const AttendnaceMarking = () => {
     e.preventDefault()
     try { 
        await api.post('/api/attendance/markAttendance' , {date ,
-         records : students.map( (student) =>(
+         students : students.map( (student) =>(
           {
             studentId : student._id,
             status : student.present ? 'present' : 'absent',

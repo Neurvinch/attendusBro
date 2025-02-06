@@ -3,6 +3,10 @@ const AttendanceModel = require("../Models/AttendanceModel");
 
 exports.markAttendance =  async(req,res) =>{
 
+    if(!date || !students){
+        return res.json({sucess : false , message : "Date and students are required"})
+    }
+
     const{date ,students} = req.body ;
 
     try {  
@@ -26,6 +30,10 @@ exports.markAttendance =  async(req,res) =>{
 exports.getAttendance = async (req,res) =>{
     try {
         const records = await AttendanceModel.find({studentId: req.user._id}).populate('studentId');
+
+        if(!records || records.length === 0){
+            return res.status(404).json({sucess : false , message : "No attendance records found"})
+        }
     
         res.json({sucess : true , data : records})
     } catch (error) {
@@ -40,6 +48,10 @@ exports.updateAttendance = async (req,res) =>{
         const records = await AttendanceModel.findByIdAndUpdate( req.params.id, { status : req.body.status}, {new: true}) 
 
             res.json({message : "Attendance updated successfully" ,data : records})
+
+             if(!records) {
+                return res.status(404).json({sucess : false , message : "No attendance records found"})
+             }
     } catch (error) {
          res.json({message : "Error updating attendance" ,data : error})
     }
