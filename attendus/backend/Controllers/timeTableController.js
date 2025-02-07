@@ -58,6 +58,9 @@ router.put ('/', identifer(['staff' ,'hod'] ) , async (req,res) =>{
 
 
 
+
+
+
 router.delete ('/', identifer(['staff' ,'hod'] ) , async (req,res) =>{
     try { 
         const entry = await TimeTableModel.findById(req.params.id)
