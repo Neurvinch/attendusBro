@@ -22,18 +22,18 @@ const api = axios.create({
     login : (formData) => api.post('/api/auth/signin' , formData),
     signup : ( userData) => api.post('/api/auth/signup' , userData),
 
-    getProfile : () => api.get('/api/users/me'),
-    updateProfile : ( data) => api.put('/api/users/me' , data),
+//     // getProfile : () => api.get('/api/users/me'),
+//     // updateProfile : ( data) => api.put('/api/users/me' , data),
 
-    getAttendance : () => api.get('/api/attendance'),
-    markAttendance : (data) => api.post('/api/attendnace/markatendance' , data),
+//     getAttendance : () => api.get('/api/attendance'),
+//     markAttendance : (data) => api.post('/api/attendnace/markatendance' , data),
 
-    getInternalMarks : () => api.get('/api/marks'),
-    addInternalsMarks : (data) => api.post('/api/addmarks' , data),
+//     getInternalMarks : () => api.get('/api/marks'),
+//     addInternalsMarks : (data) => api.post('/api/addmarks' , data),
 
-    getTimeTable : () => api.get('/api/timetable'),
+//     getTimeTable : () => api.get('/api/timetable'),
 
 
-    getUsers : () => api.get('/api/admin/users'),
+//     getUsers : () => api.get('/api/admin/users'),
     
  }
