@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
  import {useAuth} from '../context/AuthContext'
 import api from '../api';
+import { useNavigate } from 'react-router-dom';
 const Profile = () => {
     const {user} =   useAuth();
+    const Navigate = useNavigate();
     const [formData , setformData] = useState({
         email : '',
         rollNo : '',
