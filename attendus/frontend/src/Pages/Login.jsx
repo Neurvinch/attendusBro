@@ -16,7 +16,7 @@ const handleSubmitChange = async (e) =>{
     e.preventDefault();
     try { 
           await Login(formData);
-          navigate('/dashboard');
+          navigate('/profile');
         
     } catch (error) {
         alert('Login Failed')

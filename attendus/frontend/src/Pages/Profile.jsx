@@ -7,8 +7,8 @@ const Profile = () => {
         email : '',
         rollNo : '',
         roles:  '',
-        deaprtment : '',
-        class: ','
+        department : '',
+        class: ''
     }) ;
 
     useEffect( () =>{
