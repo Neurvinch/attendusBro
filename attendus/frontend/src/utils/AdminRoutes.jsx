@@ -7,7 +7,7 @@ export const ProtecetdRoute =( {children}) =>{
     if(loading) {
       return <div>Loading...</div>
     }
-    return user ? children : <Navigate to = "/login"   />
+    return user ? children : <Navigate to = "/profile"   />
  
  };
  
