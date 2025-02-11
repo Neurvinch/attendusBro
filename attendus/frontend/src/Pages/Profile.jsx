@@ -32,6 +32,7 @@ const Profile = () => {
     try {   
         await api.patch(`/api/users/${user._id}` , formData) 
         alert('Profile updated successfully')
+        Navigate('/dashboard')
         
     } catch (error) {
          console.error("error updating profile", error);
@@ -77,7 +78,7 @@ const Profile = () => {
             <label>Department</label>
             <input
             type='text'
-            value={formData.deaprtment}
+            value={formData.department}
             onChange={ (e) =>{
                 setformData({...formData , department : e.target.value})
                 }}

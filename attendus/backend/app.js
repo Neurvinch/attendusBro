@@ -1,6 +1,7 @@
 const express = require('express');
 const LoginAll = require("./Routes/login")
 const AttendanceAll = require("./Routes/Attendance")
+const Profile = require('./Routes/Profile')
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -22,6 +23,7 @@ app.use(express.urlencoded({extended : true}));
 
 app.use("/api/auth",LoginAll)
 app.use("/api/attendance",AttendanceAll )
+app.use('/api', Profile)
 
 
  

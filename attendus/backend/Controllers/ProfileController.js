@@ -19,4 +19,19 @@ router.get("/student", identifer(['student']) , async (req,res) =>{
     }
 })
 
-module.exports = router
+exports.updateProfile =  async(req,res) =>{
+    try {
+        const updateUser = await UserModel.findByIdAndUpdate(
+            req.params.id,
+            req.body,{
+                new : true
+            }
+        )
+        res.json( {success : true , data : updateUser})
+        
+    } catch (error) {
+        res.json({sucess : false , message : error.message})
+        
+    }
+} 
+
