@@ -9,7 +9,7 @@ import InternalMarksView  from './components/InternalMarksView'
 import UploadMarks   from './Pages/UploadMarks'
 
 import AttendanceMarking from "./components/AttendnaceMarking"
-import {AuthProvider , useAuth} from "./context/AuthContext"
+import {AuthProvider } from "./context/AuthContext"
 import {ProtecetdRoute , Adminroutes } from "../src/utils/AdminRoutes"
 import './App.css'
 import Dashboard from './Pages/Dashboard';
@@ -21,17 +21,19 @@ function App() {
 
 
   return (
-    <AuthProvider>
+    
     <Router>
+      <AuthProvider  >
       <Navbar/>
       <Routes>
          <Route path ="/" element={<Home/>} />
          <Route path ="/login" element={<Login/>} />
-         <Route path ="/signup" element={<Signup/>} />
+         <Route path ="/signup" element={<Signup/>} />  
+         
 
           <Route  element ={ <ProtecetdRoute/>} >
             <Route  path = '/dashboard' element = { <Dashboard/>}  />
-            <Route  path = '/profile' element = {<Profile/>}  />
+          <Route  path = '/profile' element = {<Profile/>}  />
             <Route  path='/internalmarks'  element = { <InternalMarksView/>}/>
             <Route  path='/leaverequest'  element = {<LeaveRequestform/>}     />
           
@@ -49,9 +51,9 @@ function App() {
           }  />
 
       </Routes>
-      
+     </AuthProvider> 
     </Router>
- </AuthProvider>
+ 
 
     
   )

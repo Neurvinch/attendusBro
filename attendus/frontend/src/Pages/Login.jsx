@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useAuth} from '../context/AuthContext'
 
@@ -8,8 +8,25 @@ const Login = () => {
       roles : 'student',
     });
 
-    const {LogIn} = useAuth();
+    const {LogIn , user} = useAuth();
     const navigate =  useNavigate();
+
+    useEffect(() =>{
+         const checkAuth = async () =>{
+          try {
+
+            const token = localStorage.getItem('token');
+            if(token) {
+
+            }
+            
+          } catch (error) {
+            
+          }
+         }
+    },[])
+
+    console.log(user )
 
 const handleSubmitChange = async (e) =>{
 
