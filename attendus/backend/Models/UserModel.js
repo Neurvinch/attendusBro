@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
     ,enum:[ 'student' ,'staff' , 'hod'] ,
      default : 'student' },
 
-   deaprtment :  {type : String},
+   department :  {type : String},
 
    class : {type : String},
 

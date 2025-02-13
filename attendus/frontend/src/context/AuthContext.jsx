@@ -12,7 +12,7 @@ export const AuthProvider = ({children}) => {
             try {
                 const token = localStorage.getItem('token');
                 if(token){
-                    const response = await api.getProfile();
+                    const response = await api.;
                     setUser(response.data);
                 }
                 
@@ -27,7 +27,7 @@ export const AuthProvider = ({children}) => {
             }
         }
         checkAuth();
-    } ,[])
+    } ,[user])
 
             const LogIn = async (credentials) =>{
                 try {

@@ -6,7 +6,7 @@ const {identifer} = require("../MidlleWare/identification")
 
 
 router.post ( "/markAttendance", identifer(['staff']),Attendance.markAttendance)
-router.get ( "/getAttendance",identifer(['student']),Attendance.getAttendance)
+router.get ( "/getAttendance/:userid",identifer(['student']),Attendance.getAttendance)
 router.put ("/updateAtendance" , identifer (['hod']), Attendance.updateAttendance);
 
 

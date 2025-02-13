@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended : true}));
 
 app.use("/api/auth",LoginAll)
-app.use("/api/attendance",AttendanceAll )
+app.use("/api",AttendanceAll )
 app.use("/api", Profile)
 
 

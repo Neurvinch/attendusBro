@@ -33,10 +33,11 @@ exports.signup = async (req, res ) =>{
 
             
            const savedStudent = await newStudent.save();
+               const userWithoutPassword = savedStudent.toObject();
+               delete userWithoutPassword.password;
+           
 
-           savedStudent.password = undefined;
-
-           res.status(201).json({sucess : true , message: 'Student registered successfully!' ,savedStudent});
+           res.status(201).json({sucess : true , message: 'Student registered successfully!' ,  userWithoutPassword});
 
       } catch (error) {
          console.log(error);
@@ -46,7 +47,7 @@ exports.signup = async (req, res ) =>{
 }
 
 exports.signin = async(req,res) =>{
-      const {rollNo , password,email, roles , } = req.body;
+      const {rollNo , password,email, roles  } = req.body;
 
       try { 
             const {error, value} = signinSchema.validate({rollNo,password,email,roles,});
@@ -67,15 +68,17 @@ exports.signin = async(req,res) =>{
                   return res.status(401).json({sucess : false , message: 'Invalid password'})
             }
 
-            const token = jwt.sign({studentId : existingStudent._id ,
-                  rollNo : existingStudent.rollNo,
-                  verified : existingStudent.verified , role : existingStudent.roles } ,secret_key  , {
-                        expiresIn : '8h',
-                  });
+            const token = await  jwt.sign({
+                  studentId: existingStudent._id,
+                  rollNo: existingStudent.rollNo,
+                  verified: existingStudent.verified, role: existingStudent.roles
+            }, secret_key, {
+                  expiresIn: '8h',
+            });
 // seeting token in the cookie
                   res.cookie( 'Authorization' , 'Bearer' + token,{
-                        expiresIn : new Date(Date.now() + 8 * 3600000),
-                        httpOnly : process.env.Node_ENV ===  "production",
+                        expires : new Date(Date.now() + 8 * 3600000),
+                        httpOnly : true,
                         secure : process.env.Node_ENV ===  "production",
                   }).json({sucess : true , token , message : 'Student logged in successfully'});
 
