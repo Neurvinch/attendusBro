@@ -24,6 +24,7 @@ const Login = () => {
             
           }
          }
+         checkAuth();
     },[])
 
     console.log(user )

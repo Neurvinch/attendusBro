@@ -23,7 +23,7 @@ app.use(express.urlencoded({extended : true}));
 
 app.use("/api/auth",LoginAll)
 app.use("/api/attendance",AttendanceAll )
-app.use('/api', Profile)
+app.use("/api", Profile)
 
 
  
